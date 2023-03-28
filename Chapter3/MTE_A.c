@@ -44,16 +44,13 @@ int main(){
 	
 	sum=0;
 	u[0]=maxIntegrate;
-	//u1(x) = integrate_x0^L f(x)というのを計算しないといけない（integrate_x0^L f(x)は、f(x)をx0からLまで積分と読んでください）
-	//u1(x) = integrate_0^L f(x)は、既にわかっていて、maxIntegrate
-	//u1(x0 = integrate_x0^L = integrate_0^L-integrate_0^x0 = maxIntegrate-integrate_0^x0、というように計算する。
 	for(i=1; i<L; i++){
 		x=(double)(DEL*i);
 		// u = u1*u2
 		// u2(x) = exp(R*x)*pow(1.0+x/D, -C);
 		// u1(x) = int_x0^L f(x)dx =  int_0^L f(x)dx - int_0^X0 f(x)dx
-		// because int_0^L f(x)dx = maxIntegrate
-		// we have u1(x) = maxIntegrate - int_0^X0 f(x)dx
+		// because int_0^L f(x)dx = maxIntegrate,
+		// u1(x) = maxIntegrate - int_0^X0 f(x)dx
 		u[i]=exp(R*x)*pow(1.0+x/D, -C)*(maxIntegrate-2.0*DEL*sum);
 		// sum = int_0^X0 f(x)dx
 		sum+=exp(-R*x)*pow(1.0+x/D, C)/(se2*x*(x+D));
